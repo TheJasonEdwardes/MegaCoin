@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MegaCoins3</string>
+    <string name="square1">square 1</string>
+    <string name="square2">square 2</string>
+    <string name="square3">square 3</string>
+    <string name="square4">square 4</string>
+    <string name="square5">square 5</string>
+    <string name="square6">square 6</string>
+    <string name="square7">square 7</string>
+    <string name="square8">square 8</string>
+    <string name="square9">square 9</string>
+    <string name="square10">square 10</string>
+    <string name="square11">square 11</string>
+    <string name="title_activity_new_layout">NewLayout</string>
+</resources>
