@@ -80,101 +80,35 @@ public int getRandomNumber(){
 
     return randomNumber;
 }
-public int GetCoins( int currentSpace ) {
 
-    //spaceOnBoard = spaceOnBoard + (randomNumber+1);
+    public int GetCoins(int currentSpace) {
 
-    spaceOnBoard = currentSpace;
+        //spaceOnBoard = spaceOnBoard + (randomNumber+1);
 
-    switch (spaceOnBoard) {
+        spaceOnBoard = currentSpace;
 
-        case 0:
-            coins = 4;
-            break;
-        case 1:
-            coins = 1;
+        // coin 1 = (spaceOnBoard) 1,4,10,12,17,19 (single coin img)
+        if (spaceOnBoard == 1 || spaceOnBoard == 4 || spaceOnBoard == 10 || spaceOnBoard == 12 || spaceOnBoard == 17 || spaceOnBoard == 19) {
+            coins = 100;
+        }
+        //coin 3 = (spaceOnBoard) 5,11,15,20 (3 gold bars)
+        if (spaceOnBoard == 5 || spaceOnBoard == 11 || spaceOnBoard == 15 || spaceOnBoard == 20) {
+            coins = 300;
+        }
+        //coin value 4 = (spaceOnBoard) 0,3,6,8,13,16,18,21 (dimond img)
+        if (spaceOnBoard == 0 || spaceOnBoard == 3 || spaceOnBoard == 6 || spaceOnBoard == 8 || spaceOnBoard == 13 || spaceOnBoard == 16 || spaceOnBoard == 18 || spaceOnBoard == 21) {
+            coins = 400;
+        }
+        // coin 5 = (spaceOnBoard) 2,7,9,14,23 (chest img)
+        if (spaceOnBoard == 2 || spaceOnBoard == 7 || spaceOnBoard == 9 || spaceOnBoard == 14 || spaceOnBoard == 23
+        ) {
+            coins = 500;
 
-            break;
-        case 2:
-            coins = 5;
-
-            break;
-        case 3:
-            coins = 4;
-
-            break;
-        case 4:
-            coins = 1;
-
-            break;
-        case 5:
-            coins = 3;
-
-            break;
-        case 6:
-            coins = 4;
-
-            break;
-        case 7:
-            coins = 5;
-
-            break;
-        case 8:
-            coins = 4;
-
-            break;
-        case 9:
-            coins = 5;
-
-            break;
-        case 10:
-            coins = 1;
-
-            break;
-        case 11:
-            coins = 3;
-
-            break;
-        case 12:
-            coins = 1;
-            break;
-        case 13:
-            coins = 4;
-            break;
-        case 14:
-            coins = 5;
-            break;
-        case 15:
-            coins = 3;
-            break;
-        case 16:
-            coins = 4;
-            break;
-        case 17:
-            coins = 1;
-            break;
-        case 18:
-             coins = 4;
-            break;
-        case 19:
-            coins = 1;
-            break;
-        case 20:
-            coins = 3;
-            break;
-        case 21:
-            coins = 4;
-            break;
-        case 22:
-            coins = 1;
-            break;
-        case 23:
-            coins = 5;
-            break;
 
     }
     return coins ;
-}
+
+    }
 public int getTotalCoins(){
     //totalCoins = totalCoins + GetCoins();
 

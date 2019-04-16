@@ -2,7 +2,9 @@ package com.example.megacoins3;
 
 import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,41 +15,39 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.Random;
-
-
-
-
-
+import java.util.logging.Level;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
+
     int rabitcounter = 0;
-    int currentImageTower1;
-    int currentImageTower2;
-    int currentImageTower3;
-    int currentImageTower4;
+
+    int currentImageTower1 = 0;
+    int currentImageTower2 = 0;
+    int currentImageTower3 = 0;
+    int currentImageTower4 = 0;
     int diceRoll;
     int randomNumber;
     int boardspace = 0;
-    int intTotalcoins =0 ;
-    int scoreboard =0;
+    int intTotalcoins = 0;
+    int scoreboard = 0;
     BackGround backGround = new BackGround();
     int times = 1;
-    int totalPoints=0;
-    int currentSpace =0;
-    int currentCoins ;
+    int totalPoints = 0;
+    int currentSpace = 0;
+    int currentCoins;
     long diceDelay;
     long millseconds, longdelay;
     int txt_turns_Left = 55;
     int random;
-Level tower1_level1 = new Level(1,2,3,4,5,6,7,50);
+
     ImageView imgGameBoard1, imgGameBoard2, imgGameBoard3, imgGameBoard4, imgGameBoard5, imgGameBoard6, imgGameBoard7,
             imgGameBoard8, imgGameBoard9, imgGameBoard10, imgGameBoard11, imgGameBoard12, imgGameBoard13, imgGameBoard14,
             imgGameBoard15, imgGameBoard16, imgGameBoard17, imgGameBoard18, imgGameBoard19, imgGameBoard20, imgGameBoard21,
             imgGameBoard22, imgGameBoard23, imgGameBoard24;
     ImageView imgDice, imgView100, imgView200, imgView300, imgView400;
     ImageView btnRollDice, btnSpendOne, btnSpendTwo, btnSpendThree, btnSpendFour;
-    TextView txtCoinsx, txtTotalCoins, txtTurnsLeft, txtScore,text5;
+    TextView txtCoinsx, txtTotalCoins, txtTurnsLeft, txtScore, text5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +91,7 @@ Level tower1_level1 = new Level(1,2,3,4,5,6,7,50);
         btnSpendOne = findViewById(R.id.btnSpendOne);
         btnSpendTwo = findViewById(R.id.btnSpendTwo);
         btnSpendThree = findViewById(R.id.btnSpendThree);
-       btnSpendFour = findViewById(R.id.btnSpendFour);
+        btnSpendFour = findViewById(R.id.btnSpendFour);
         btnRollDice = findViewById(R.id.btnRollDice);
         btnRollDice.setOnClickListener(this);
         btnSpendOne.setOnClickListener(this);
@@ -100,7 +100,7 @@ Level tower1_level1 = new Level(1,2,3,4,5,6,7,50);
         btnSpendFour.setOnClickListener(this);
     }
 
-  @Override
+    @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
@@ -113,14 +113,13 @@ Level tower1_level1 = new Level(1,2,3,4,5,6,7,50);
                 if (boardspace > 23) {
                     boardspace = boardspace - 23;
                 }
-                if(totalPoints > scoreboard){
+                if (totalPoints > scoreboard) {
                     scoreboard = totalPoints;
 
-                    text5.setText(""+ totalPoints);
+                    text5.setText("" + totalPoints);
                 }
 
-                //imgDice.setImageDrawable(getResources().getDrawable(R.drawable.mdice_five));
-                //random = random_dice_roll.nextInt(5);
+
 
 
                 diceDelay = backGround.getDiceDelay();
@@ -132,22 +131,9 @@ Level tower1_level1 = new Level(1,2,3,4,5,6,7,50);
                 boardSpaces();
 
 
-
-            break;
+                break;
             case R.id.btnSpendOne:
-
-
-
-
-
-
-
-
                 if (intTotalcoins < 50) {
-
-
-
-
 
                 } else {
 
@@ -155,135 +141,84 @@ Level tower1_level1 = new Level(1,2,3,4,5,6,7,50);
                             R.drawable.ntower1x5, R.drawable.ntower1x6, R.drawable.ntower1x7,
                             R.drawable.ntower1x8};
 
-                    imgView100.setImageDrawable(getResources().getDrawable(arrayTimes1[currentImageTower1]));
+                    //imgView100.setImageDrawable(getResources().getDrawable(arrayTimes1[currentImageTower1]));
+                    imgView100.setBackgroundResource(arrayTimes1[currentImageTower1]);
                     times = times + 1;
                     currentImageTower1 = currentImageTower1 + 1;
                     intTotalcoins = intTotalcoins - 50;
-                    if (currentImageTower1 >= arrayTimes1.length){
+                    if (currentImageTower1 >= arrayTimes1.length) {
 
                         btnSpendOne.setEnabled(false);
                     }
 
 
-
-                        txtCoinsx.setText("coin X" + times);
-                        txtTotalCoins.setText("coins : " + intTotalcoins);
+                    txtCoinsx.setText("coin X" + times);
+                    txtTotalCoins.setText("coins : " + intTotalcoins);
 
                 }
 
 
                 break;
-                case R.id.btnSpendTwo:
+            case R.id.btnSpendTwo:
 
 
-
-
-
-
-
-                    if (intTotalcoins < 100) {
+                if (intTotalcoins < 100) {
 
 
                 } else {
+
+
+                    int[] arrayTimes2 = {R.drawable.ntower2x2, R.drawable.ntower2x3, R.drawable.ntower2x4,
+                            R.drawable.ntower2x5, R.drawable.ntower2x6, R.drawable.ntower2x7,
+                            R.drawable.ntower2x8};
+
+                    int[] currentCoinArray = {3, 3, 3, 3, 3, 5, 5};
+
+
+                    intTotalcoins = intTotalcoins - 100;
+                    imgView200.setBackgroundResource(arrayTimes2[currentImageTower2]);
+                    //imgView200.setImageDrawable(getResources().getDrawable(arrayTimes2[currentImageTower2]));
+                    times = times + currentCoinArray[currentImageTower2];
                     currentImageTower2 = currentImageTower2 + 1;
-
-                        intTotalcoins = intTotalcoins - 100;
-
-                        int[] arrayTimes2 = {R.drawable.ntower2x2, R.drawable.ntower2x3, R.drawable.ntower2x4,
-                                R.drawable.ntower2x5, R.drawable.ntower2x6, R.drawable.ntower2x7,
-                                R.drawable.ntower2x8};
-
-                        switch (currentImageTower2) {
-                            case 1:
-                                imgView200.setImageDrawable(getResources().getDrawable(arrayTimes2[0]));
-                                times = times + 3;
-                                break;
-                            case 2:
-                                imgView200.setImageDrawable(getResources().getDrawable(arrayTimes2[1]));
-                                times = times + 3;
-                                break;
-                            case 3:
-                                times = times + 3;
-                                imgView200.setImageDrawable(getResources().getDrawable(arrayTimes2[2]));
-                                break;
-                            case 4:
-                                times = times + 3;
-                                imgView200.setImageDrawable(getResources().getDrawable(arrayTimes2[3]));
-                                break;
-                            case 5:
-                                times = times + 3;
-                                imgView200.setImageDrawable(getResources().getDrawable(arrayTimes2[4]));
-                                break;
-                            case 6:
-                                times = times + 5;
-                                imgView200.setImageDrawable(getResources().getDrawable(arrayTimes2[5]));
-                                break;
-
-                            case 7:
-                                times = times + 5;
-                                imgView200.setImageDrawable(getResources().getDrawable(arrayTimes2[6]));
-                                btnSpendTwo.setEnabled(false);
-
-                                break;
+                    if (currentImageTower2 == 7) {
+                        btnSpendTwo.setEnabled(false);
+                    }
 
 
-                        }
-                        txtCoinsx.setText("coin X" + times);
-                        txtTotalCoins.setText("coins : " + intTotalcoins);
+                    txtCoinsx.setText("coin X" + times);
+                    txtTotalCoins.setText("coins : " + intTotalcoins);
 
                 }
-                    break;
+                break;
             case R.id.btnSpendThree:
 
                 if (intTotalcoins < 200) {
 
 
                 } else {
+
+
+                    intTotalcoins = intTotalcoins - 200;
+
+                    int[] arrayTimes3 = {R.drawable.ntower3x2, R.drawable.ntower3x3, R.drawable.ntower3x4,
+                            R.drawable.ntower3x5, R.drawable.ntower3x6, R.drawable.ntower3x7,
+                            R.drawable.ntower3x8};
+
+                    int[] currentCoinArray = {6, 3, 3, 3, 10, 10, 5};
+
+                    intTotalcoins = intTotalcoins - 200;
+
+                    imgView300.setBackgroundResource(arrayTimes3[currentImageTower3]);
+
+                    times = times + currentCoinArray[currentImageTower3];
                     currentImageTower3 = currentImageTower3 + 1;
-
-                        intTotalcoins = intTotalcoins - 200;
-
-                        int[] arrayTimes3 = {R.drawable.ntower3x2, R.drawable.ntower3x3, R.drawable.ntower3x4,
-                                R.drawable.ntower3x5, R.drawable.ntower3x6, R.drawable.ntower3x7,
-                                R.drawable.ntower3x8};
-
-                        switch (currentImageTower3) {
-                            case 1:
-                                imgView300.setImageDrawable(getResources().getDrawable(arrayTimes3[0]));
-                                times = times + 6;
-                                break;
-                            case 2:
-                                imgView300.setImageDrawable(getResources().getDrawable(arrayTimes3[1]));
-                                times = times + 3;
-                                break;
-                            case 3:
-                                times = times + 3;
-                                imgView300.setImageDrawable(getResources().getDrawable(arrayTimes3[2]));
-                                break;
-                            case 4:
-                                times = times + 3;
-                                imgView300.setImageDrawable(getResources().getDrawable(arrayTimes3[3]));
-                                break;
-                            case 5:
-                                times = times + 10;
-                                imgView300.setImageDrawable(getResources().getDrawable(arrayTimes3[4]));
-                                break;
-                            case 6:
-                                times = times + 10;
-                                imgView300.setImageDrawable(getResources().getDrawable(arrayTimes3[5]));
-                                break;
-
-                            case 7:
-                                times = times + 5;
-                                imgView300.setImageDrawable(getResources().getDrawable(arrayTimes3[6]));
-                                btnSpendThree.setEnabled(false);
-
-                                break;
+                    if (currentImageTower3 == 7) {
+                        btnSpendThree.setEnabled(false);
+                    }
 
 
-                        }
-                        txtCoinsx.setText("coin X" + times);
-                        txtTotalCoins.setText("coins : " + intTotalcoins);
+                    txtCoinsx.setText("coin X" + times);
+                    txtTotalCoins.setText("coins : " + intTotalcoins);
 
                 }
                 break;
@@ -293,70 +228,40 @@ Level tower1_level1 = new Level(1,2,3,4,5,6,7,50);
 
 
                 } else {
+
+                    int[] arrayTimes4 = {R.drawable.ntower4x2, R.drawable.ntower4x3, R.drawable.ntower4x4,
+                            R.drawable.ntower4x5, R.drawable.ntower4x6, R.drawable.ntower4x7,
+                            R.drawable.ntower4x8};
+
+                    int[] currentCoinArray = {14, 16, 15, 15, 15, 15, 30};
+
+                    intTotalcoins = intTotalcoins - 400;
+
+                    imgView400.setBackgroundResource(arrayTimes4[currentImageTower4]);
+
+                    times = times + currentCoinArray[currentImageTower4];
                     currentImageTower4 = currentImageTower4 + 1;
-
-                        intTotalcoins = intTotalcoins - 400;
-
-                        int[] arrayTimes4 = {R.drawable.ntower4x2, R.drawable.ntower4x3, R.drawable.ntower4x4,
-                                R.drawable.ntower4x5, R.drawable.ntower4x6, R.drawable.ntower4x7,
-                                R.drawable.ntower4x8};
-
-                        switch (currentImageTower4) {
-                            case 1:
-                                imgView400.setImageDrawable(getResources().getDrawable(arrayTimes4[0]));
-                                times = times + 14;
-                                break;
-                            case 2:
-                                imgView400.setImageDrawable(getResources().getDrawable(arrayTimes4[1]));
-                                times = times + 16;
-                                break;
-                            case 3:
-                                times = times + 15;
-                                imgView400.setImageDrawable(getResources().getDrawable(arrayTimes4[2]));
-                                break;
-                            case 4:
-                                times = times + 15;
-                                imgView400.setImageDrawable(getResources().getDrawable(arrayTimes4[3]));
-                                break;
-                            case 5:
-                                times = times + 15;
-                                imgView400.setImageDrawable(getResources().getDrawable(arrayTimes4[4]));
-                                break;
-                            case 6:
-                                times = times + 15;
-                                imgView400.setImageDrawable(getResources().getDrawable(arrayTimes4[5]));
-                                break;
-
-                            case 7:
-                                times = times + 30;
-                                imgView400.setImageDrawable(getResources().getDrawable(arrayTimes4[6]));
-                                btnSpendFour.setEnabled(false);
-
-                                break;
-
-
-                        }
-                        txtCoinsx.setText("coin X" + times);
-                        txtTotalCoins.setText("coins : " + intTotalcoins);
+                    if (currentImageTower4 == 7) {
+                        btnSpendFour.setEnabled(false);
                     }
+                    txtCoinsx.setText("coin X" + times);
+                    txtTotalCoins.setText("coins : " + intTotalcoins);
+                    break;
 
-                break;
+                }
+
 
         }
 
-
     }
 
-
-        //private void roll_dice_Animation(long mdicedelay, int randomdice) {
-        private void roll_dice_Animation(long mdicedelay, int randomdice) {
+    private void roll_dice_Animation(long mdicedelay, int randomdice) {
         final int ran = randomdice;
 
 
         // dicedelay = time delayed before the dice is rolled a second time
 
         // delays 1000, and runs for 2500 = 3500ms
-
 
 
         Handler handler = new Handler();
@@ -367,7 +272,7 @@ Level tower1_level1 = new Level(1,2,3,4,5,6,7,50);
                 final int[] diceAnimation = {R.drawable.img_dice_one, R.drawable.img_dice_two,
                         R.drawable.img_dice_three, R.drawable.img_dice_four,
                         R.drawable.img_dice_five, R.drawable.img_dice_six};
-                txt_turns_Left = txt_turns_Left -1;
+                txt_turns_Left = txt_turns_Left - 1;
                 imgDice.setAdjustViewBounds(true);
                 imgDice.setLayerType(imgDice.LAYER_TYPE_HARDWARE, null);
                 imgDice.setImageDrawable(getResources().getDrawable(diceAnimation[ran]));
@@ -380,13 +285,14 @@ Level tower1_level1 = new Level(1,2,3,4,5,6,7,50);
         }, mdicedelay);
 
     }
+
+
     private void boardSpaces() {
 
 
-        if (longdelay == 0){
-            longdelay =diceDelay + 1400;
+        if (longdelay == 0) {
+            longdelay = diceDelay + 1400;
         }
-
 
 
         Handler handler = new Handler();
@@ -405,7 +311,6 @@ Level tower1_level1 = new Level(1,2,3,4,5,6,7,50);
                         imgGameBoard21, imgGameBoard22, imgGameBoard23, imgGameBoard24};
 
 
-
                 //int img = backGround.getImage();
                 ///imgGameBoard23.setImageDrawable(getResources().getDrawable(img));
 
@@ -414,8 +319,8 @@ Level tower1_level1 = new Level(1,2,3,4,5,6,7,50);
                     diceRoll = x;
 
                     millseconds = millseconds + 500;
-                    currentSpace = currentSpace+1;
-                    if (currentSpace == board_spaces.length){
+                    currentSpace = currentSpace + 1;
+                    if (currentSpace == board_spaces.length) {
                         currentSpace = 0;
                     }
 
@@ -463,75 +368,38 @@ Level tower1_level1 = new Level(1,2,3,4,5,6,7,50);
 
                 }
 
-/*
+                /*
 
 
-*/
+                 */
 
-                if ( (currentSpace == 1 )|| (currentSpace ==4) || (currentSpace ==7)||(currentSpace ==10)||(currentSpace ==12)||(currentSpace ==17)||(currentSpace ==19)||(currentSpace ==22)) {
+                if ((currentSpace == 1) || (currentSpace == 4) || (currentSpace == 7) || (currentSpace == 10) || (currentSpace == 12) || (currentSpace == 17) || (currentSpace == 19) || (currentSpace == 22)) {
                     currentCoins = 1;
                 }
 
-                if ((currentSpace == 0) ||(currentSpace == 5) || (currentSpace == 11 )|| (currentSpace ==15) ||(currentSpace == 18)||(currentSpace ==20)){
+                if ((currentSpace == 0) || (currentSpace == 5) || (currentSpace == 11) || (currentSpace == 15) || (currentSpace == 18) || (currentSpace == 20)) {
                     currentCoins = 3;
                 }
 
-                if ((currentSpace == 3) || (currentSpace == 6 )|| (currentSpace ==8) || (currentSpace == 13)||(currentSpace == 16)||(currentSpace ==21)){
+                if ((currentSpace == 3) || (currentSpace == 6) || (currentSpace == 8) || (currentSpace == 13) || (currentSpace == 16) || (currentSpace == 21)) {
                     currentCoins = 5;
                 }
 
-                if ((currentSpace == 2) || (currentSpace == 9 )|| (currentSpace ==14) || (currentSpace ==23)) {
+                if ((currentSpace == 2) || (currentSpace == 9) || (currentSpace == 14) || (currentSpace == 23)) {
                     currentCoins = 10;
                 }
-                intTotalcoins = intTotalcoins +(currentCoins * times);
+                intTotalcoins = intTotalcoins + (currentCoins * times);
                 totalPoints = totalPoints + (currentCoins * times);
-                txtScore.setText("points : "+ totalPoints);
-                txtCoinsx.setText("coin X"+times);
-
+                txtScore.setText("points : " + totalPoints);
+                txtCoinsx.setText("coin X" + times);
 
 
             }
 
-        },longdelay);
+        }, longdelay);
 
         }
-    public void getpoints(Level level_tower, int idtower1,int idtower2,int idtower3,int idtower4,
-                          int idtower5, int idtower6,int idtower7,int idintbtn){
 
 
-        // return a number
-        int tower1 = level_tower.getTower1();
-        int tower2 = level_tower.getTower2();
-        int tower3 = level_tower.getTower3();
-        int tower4 = level_tower.getTower4();
-        int tower5 = level_tower.getTower5();
-        int tower6 = level_tower.getTower6();
-        int tower7 = level_tower.getTower7();
-        int idbtn = idintbtn;
-        int id1 = idtower1;
-        int id2 = idtower2;
-        int id3 = idtower3;
-        int id4 = idtower4;
-        int id5 = idtower5;
-        int id6 = idtower6;
-        int id7 = idtower7;
-
-
-        ((TextView)findViewById(id1)).setText("X"+tower1);
-        ((TextView)findViewById(id2)).setText("X"+tower2);
-        ((TextView)findViewById(id3)).setText("X"+tower3);
-        ((TextView)findViewById(id4)).setText("X"+tower4);
-        ((TextView)findViewById(id5)).setText("X"+tower5);
-        ((TextView)findViewById(id6)).setText("X"+tower6);
-        ((TextView)findViewById(id7)).setText("X"+tower7);
-        ((TextView)findViewById(idbtn)).setText(""+idintbtn);
     }
-
-
-
-
-
-
-
-}
 
