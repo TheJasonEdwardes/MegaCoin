@@ -206,7 +206,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                     int[] currentCoinArray = {6, 3, 3, 3, 10, 10, 5};
 
-                    intTotalcoins = intTotalcoins - 200;
 
                     imgView300.setBackgroundResource(arrayTimes3[currentImageTower3]);
 
